@@ -1,0 +1,4 @@
+node_modules
+input/*
+!config/*.default*
+package-lock.json
