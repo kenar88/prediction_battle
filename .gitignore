@@ -1,4 +1,5 @@
 node_modules
 input/*
 !config/*.default*
+database/config
 package-lock.json
