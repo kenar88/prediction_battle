@@ -4,7 +4,7 @@ const {
 } = require('sequelize');
 decision
 const MAX_ROUND_COUNT = 5;
-const MIN_ROUNDS_COUNT = 3;
+const MIN_ROUND_COUNT = 3;
 const KO = 'knockout';
 const TECHNICAL_KO = 'technical knockout';
 const SUBMISSION = 'submission';
@@ -66,8 +66,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         validRoundsCount(value) {
-          if(value !== MIN_ROUNDS_COUNT || value !== MAX_ROUND_COUNT) {
-            throw new Error(`Count of rounds should be ${MAX_ROUND_COUNT} or ${MIN_ROUNDS_COUNT}`)
+          if(value !== MIN_ROUNDS_COUNT && value !== MAX_ROUND_COUNT) {
+            throw new Error(`Count of rounds should be ${MAX_ROUND_COUNT} or ${MIN_ROUND_COUNT}`)
           }
         },
       },
