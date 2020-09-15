@@ -1,45 +1,51 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Fighters', {
+    await queryInterface.createTable('Actions', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
+      fighter_a: {
         type: Sequelize.STRING
       },
-      nick_name: {
+      fighter_b: {
         type: Sequelize.STRING
       },
-      age: {
+      rounds: {
         type: Sequelize.INTEGER
       },
-      height: {
+      main_event: {
+        type: Sequelize.BOOLEAN
+      },
+      main_fight: {
+        type: Sequelize.BOOLEAN
+      },
+      event_id: {
+        type: Sequelize.INTEGER
+      },
+      verdict_winner: {
         type: Sequelize.STRING
       },
-      weight: {
+      verdict_type: {
+        type: Sequelize.STRING
+      },
+      verdict_round: {
         type: Sequelize.INTEGER
       },
-      wins: {
-        type: Sequelize.INTEGER
-      },
-      losses: {
-        type: Sequelize.INTEGER
-      },
-      created_at: {
+      createdAt: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updated_at: {
+      updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
       }
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Fighters');
-  },
+    await queryInterface.dropTable('Actions');
+  }
 };
