@@ -2,36 +2,21 @@
 const {
   Model
 } = require('sequelize');
-decision
+
+const VERDICTS = require('../constants');
+
 const MAX_ROUND_COUNT = 5;
 const MIN_ROUND_COUNT = 3;
-const KO = 'knockout';
-const TECHNICAL_KO = 'technical knockout';
-const SUBMISSION = 'submission';
-const DRAW_DECISION = 'draw';
-const MAJORITY_DECISION = 'majority';
-const SPLIT_DECISION = 'split';
-const NO_CONTEST = 'no contest';
-const verdicts = [
-  KO,
-  TECHNICAL_KO,
-  SUBMISSION,
-  DRAW_DECISION,
-  MAJORITY_DECISION,
-  SPLIT_DECISION,
-  NO_CONTEST,  
-];
-
 const validName = (value) => {
-  if(value === null || value === '' || value.length < 2) {
-    throw new Error('The name should consist of at least two characters');
+  if(value === null || value.length < 1) {
+    throw new Error('The name should consist of at least one character');
   }
 };
 
 module.exports = (sequelize, DataTypes) => {
   class Action extends Model {
     static associate(models) {
-      this.belongsTo(models.Event, {
+      this.belongsTo(models.Events, {
         foreignKey: 'event_id',
       })
     }
@@ -45,7 +30,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       field: 'fighter_a',
-      validate: validName,
+      validate: {
+        validName,
+      },
     },
     /**
       * Second fighter name
@@ -55,7 +42,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       field: 'fighter_b',
-      validate: validName,
+      validate: {
+        validName
+      },
     },
     /**
       * Action rounds count
@@ -66,7 +55,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         validRoundsCount(value) {
-          if(value !== MIN_ROUNDS_COUNT && value !== MAX_ROUND_COUNT) {
+          if(value !== MIN_ROUND_COUNT && value !== MAX_ROUND_COUNT) {
             throw new Error(`Count of rounds should be ${MAX_ROUND_COUNT} or ${MIN_ROUND_COUNT}`)
           }
         },
@@ -87,6 +76,7 @@ module.exports = (sequelize, DataTypes) => {
     mainFight: {
       type: DataTypes.BOOLEAN,
       field: 'main_fight',
+      defaultValue: false,
     },
     /**
       * Winner name
@@ -96,7 +86,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       field: 'verdict_winner',
       allowNull: true,
-      validate: validName,
+      defaultValue: '-',
+      validate: {
+        validName
+      },
     },
     /**
       * Finish type or decision
@@ -106,10 +99,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       field: 'verdict_type',
       allowNull: true,
+      defaultValue: '-',
       validate: {
         decisionType(value) {
-          if (!verdicts.includes(value)) {
-            throw new Error(`Verdict type must be one of: ${vericts.join(', ')}`)
+          if (![...VERDICTS, '-'].includes(value)) {
+            throw new Error(`Verdict type must be one of: ${VERDICTS.join(', ')}`);
           }
         }
       }
@@ -143,7 +137,9 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     sequelize,
-    modelName: 'Action',
+    modelName: 'Actions',
+    tableName: 'actions',
   });
+
   return Action;
 };

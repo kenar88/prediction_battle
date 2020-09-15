@@ -1,6 +1,6 @@
 'use strict';
 const moment = require('moment');
-const dateFormat = 'MM/DD/YYYY';
+const dateFormat = 'DD-MM-YYYY';
 
 const {
   Model
@@ -8,7 +8,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Event extends Model {
     static associate(models) {
-      this.hasMany(models.Action, {
+      this.hasMany(models.Actions, {
         foreignKey: 'event_id',
         as: 'actions',
       });
@@ -44,16 +44,16 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     /**
-      * Actions(fights) count
-      * @type {integer}
+      * Event date
+      * @type {string}
     */
     date: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         wrongDateFormat(value) {
           const isValidDAteFormat = moment(value, dateFormat, true).isValid();
-          if(!isValidDAteFormat) {
+          if (!isValidDAteFormat) {
             throw new Error(`Date format should be ${dateFormat}`);
           }
         }
@@ -61,7 +61,9 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     sequelize,
-    modelName: 'Event',
+    modelName: 'Events',
+    tableName: 'events',
   });
+  
   return Event;
 };

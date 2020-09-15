@@ -79,7 +79,7 @@ module.exports = (sequelize, DataTypes) => {
       * @type {integer}
     */
     wins: {
-      type: DataTypes.INTEGER,      
+      type: DataTypes.INTEGER,
       min: 0,
     },
     /**
@@ -92,7 +92,9 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     sequelize,
-    modelName: 'Fighter',
+    modelName: 'Fighters',
+    tableName: 'fighters',
   });
+  
   return Fighter;
 };
