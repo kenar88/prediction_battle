@@ -19,15 +19,19 @@
   },
   "homepage": "https://github.com/kenar88/prediction_battle#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.20",
     "moment": "^2.28.0",
     "pg": "^8.3.3",
     "pg-hstore": "^2.3.3",
+    "request": "^2.88.2",
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0"
   },
   "devDependencies": {
+    "concurrently": "^5.3.0",
     "eslint": "^7.8.1",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-prettier": "^3.1.4",
