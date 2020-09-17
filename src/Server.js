@@ -1,7 +1,9 @@
+const express = require('express');
+
 let instanceCount = 0;
 
 class Server {
-  constructor(express) {
+  constructor() {
     if(instanceCount) {
       throw new Error('Server class is a singleton');
     }
@@ -12,10 +14,10 @@ class Server {
   }
 
   run() {
-    this.app.get('/', (req, res) => {
-      res.send('Testing server');
-    });
-
+    this.app.use('/api/auth', require('./routes/api/auth'));
+    this.app.use('/api/users', require('./routes/api/users'));
+    
+    // eslint-disable-next-line
     this.app.listen(this.PORT, () => console.log(`App is running on ${this.PORT}`));
   }
 }

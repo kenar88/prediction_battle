@@ -1,6 +1,5 @@
 const Server = require('./src/Server');
 
-
-const server = new Server(require('express'));
+const server = new Server();
 
 server.run();
