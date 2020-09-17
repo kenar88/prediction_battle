@@ -11,10 +11,11 @@ module.exports = {
   },
   'rules': {
     'no-var': 'error',
-    "no-multi-spaces": "error",
+    'no-multi-spaces': 'error',
     'no-console': 'error',
-    "no-multiple-empty-lines": "error",
-    "prefer-const": "error",
+    'no-multiple-empty-lines': 'error',
+    'prefer-const': 'error',
+    'eol-last': ['error', 'always'],
     'space-before-function-paren': ['error', {
       'asyncArrow': 'always',
       'named': 'never',
