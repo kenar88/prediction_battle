@@ -5,7 +5,7 @@ const {
 
 module.exports = (sequelize, DataTypes) => {
   class Fighter extends Model {
-    static associate (models) {
+    static associate(models) {
 
     }
   }
@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     nickName: {
       type: DataTypes.STRING,
       field: 'nick_name',
-      allowNull: false,
+      allowNull: true,
     },
     /**
       * Fighter age
@@ -54,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
     */
     height: {
       allowNull: true,
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       validate: {
         isInt: {
           msg: 'Fighter height should be integer',
@@ -94,6 +94,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Fighters',
     tableName: 'fighters',
+    timestamps: false,
   });
   
   return Fighter;

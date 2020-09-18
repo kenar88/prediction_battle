@@ -3,7 +3,7 @@ const moment = require('moment');
 const dateFormat = 'DD-MM-YYYY';
 
 const {
-  Model
+  Model,
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Event extends Model {
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         as: 'actions',
       });
     }
-  };
+  }
   Event.init({
     /**
       * Event number; event can be numbered or 'Fight night'
@@ -56,7 +56,7 @@ module.exports = (sequelize, DataTypes) => {
           if (!isValidDAteFormat) {
             throw new Error(`Date format should be ${dateFormat}`);
           }
-        }
+        },
       },
     },
   }, {

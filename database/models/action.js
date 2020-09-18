@@ -1,6 +1,6 @@
 'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
 
 const VERDICTS = require('../constants');
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'event_id',
       })
     }
-  };
+  }
   Action.init({
     /**
       * First fighter name
@@ -43,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       field: 'fighter_b',
       validate: {
-        validName
+        validName,
       },
     },
     /**
@@ -88,7 +88,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
       defaultValue: '-',
       validate: {
-        validName
+        validName,
       },
     },
     /**
@@ -105,8 +105,8 @@ module.exports = (sequelize, DataTypes) => {
           if (![...VERDICTS, '-'].includes(value)) {
             throw new Error(`Verdict type must be one of: ${VERDICTS.join(', ')}`);
           }
-        }
-      }
+        },
+      },
    },
     /**
       * Final round number; needed if the decision didn't make
