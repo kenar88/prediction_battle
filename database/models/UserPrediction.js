@@ -1,6 +1,6 @@
 'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
 
 const VERDICTS = require('../constants');
@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       
     }
-  };
+  }
   UserPrediction.init({
     /**
       * User prediction belongs
@@ -81,7 +81,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         decisionType(value) {
           if (!VERDICTS.includes(value)) {
-            throw new Error(`Verdict type must be one of: ${vericts.join(', ')}`);
+            throw new Error(`Verdict type must be one of: ${VERDICTS.join(', ')}`);
           }
         },
       },

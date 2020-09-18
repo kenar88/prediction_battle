@@ -1,5 +1,7 @@
 const express = require('express');
 
+const Logger = require('./Logger');
+
 let instanceCount = 0;
 
 class Server {
@@ -16,9 +18,7 @@ class Server {
   run() {
     this.app.use('/api/auth', require('./routes/api/auth'));
     this.app.use('/api/users', require('./routes/api/users'));
-    
-    // eslint-disable-next-line
-    this.app.listen(this.PORT, () => console.log(`App is running on ${this.PORT}`));
+    this.app.listen(this.PORT, () => Logger.log(`App is running on ${this.PORT}`));
   }
 }
 
