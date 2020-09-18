@@ -2,15 +2,8 @@ const express = require('express');
 
 const Logger = require('./Logger');
 
-let instanceCount = 0;
-
 class Server {
   constructor() {
-    if(instanceCount) {
-      throw new Error('Server class is a singleton');
-    }
-    instanceCount++;
-
     this.app = express();
     this.PORT = process.env.PORT || 5000;
   }
