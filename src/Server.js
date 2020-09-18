@@ -1,3 +1,4 @@
+const Logger = require('./Logger');
 let instanceCount = 0;
 
 class Server {
@@ -16,7 +17,7 @@ class Server {
       res.send('Testing server');
     });
 
-    this.app.listen(this.PORT, () => console.log(`App is running on ${this.PORT}`));
+    this.app.listen(this.PORT, () => Logger.log(`App is running on ${this.PORT}`));
   }
 }
 

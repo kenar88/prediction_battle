@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       height: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       weight: {
         type: Sequelize.INTEGER
@@ -28,14 +28,6 @@ module.exports = {
       },
       losses: {
         type: Sequelize.INTEGER
-      },
-      created_at: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updated_at: {
-        allowNull: false,
-        type: Sequelize.DATE
       }
     });
   },
