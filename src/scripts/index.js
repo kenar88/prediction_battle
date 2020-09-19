@@ -4,7 +4,7 @@ const Logger = require('../Logger');
 const eventData = require('../../input/event.json');
 const csvParser = require('./helpers');
 
-// will get the filename from config file in future; the filename will be connected to event through number or smth else
+// will get the filename from config file in the future; the filename will be connected to the event through event number or event date
 const filePath = `../../input/fighters_stats.csv`;
 
 const {
