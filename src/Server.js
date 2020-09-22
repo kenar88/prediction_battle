@@ -9,6 +9,8 @@ class Server {
   }
 
   run() {
+    this.app.use(express.json());
+
     this.app.use('/api/auth', require('./routes/api/auth'));
     this.app.use('/api/users', require('./routes/api/users'));
     this.app.listen(this.PORT, () => Logger.log(`App is running on ${this.PORT}`));
