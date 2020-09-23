@@ -13,7 +13,17 @@ class Server {
 
     this.app.use('/api/auth', require('./routes/api/auth'));
     this.app.use('/api/users', require('./routes/api/users'));
-    this.app.listen(this.PORT, () => Logger.log(`App is running on ${this.PORT}`));
+
+    const server = this.app.listen(
+      this.PORT, () => Logger.log(`App is running on ${this.PORT}`
+      ));
+
+    const io = require('./socket').init(server);
+
+    // eslint-disable-next-line no-unused-vars
+    io.on('connect', (socket) => {
+      Logger.log('Push data');
+    })
   }
 }
 
